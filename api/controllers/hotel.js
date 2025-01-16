@@ -43,18 +43,34 @@ export const getHotel = async (req,res,next) => {
     }
 }
 
-export const getHotels = async (req,res,next) => {
-    const { min, max, ...others } = req.query;
+// export const getHotels = async (req,res,next) => {
+//     const { min, max, ...others } = req.query;
+//     try {   
+//         const hotels = await Hotel.find({
+//             ...others, 
+//             cheapestPrice: { $gt: min || 1, $lt: max || 999 },
+//         }).limit(req.query.limit);
+//         res.status(200).json(hotels)
+//     } catch (err) {
+//         next(err)
+//     }
+// }
+
+export const getHotels = async (req, res, next) => {
+    const { min, max, city, ...others } = req.query; // Extract 'city' from the query
     try {   
         const hotels = await Hotel.find({
-            ...others, 
-            cheapestPrice: { $gt: min || 1, $lt: max || 999 },
+            ...(city && { city: { $regex: city.split(" ").join(".*"), $options: "i" } }), // Case-insensitive partial match for city
+            cheapestPrice: { $gte: min || 1, $lte: max || 999 }, // Use $gte and $lte for better clarity
+            ...others, // Include other query parameters
         }).limit(req.query.limit);
-        res.status(200).json(hotels)
+        
+        res.status(200).json(hotels);
     } catch (err) {
-        next(err)
+        next(err);
     }
-}
+};
+
 
 export const countByCity = async (req,res,next) => {
     const cities = req.query.cities.split(",")

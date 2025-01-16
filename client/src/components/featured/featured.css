@@ -1,4 +1,4 @@
-.featured {
+/* .featured {
     width: 100%;
     max-width: 1080px;
     display: flex;
@@ -23,4 +23,44 @@
 .featuredTitles {
     position: absolute;
     bottom: 20px;
+} */
+
+
+.featured {
+    width: 100%;
+    max-width: 1080px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    z-index: 1;
+}
+
+.featuredItem {
+    width: 100%;
+    color: black;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.featuredImg {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    height: 250px;
+}
+
+.featuredTitlesBelow {
+    margin-top: 10px;
+}
+
+.featuredTitlesBelow h1 {
+    font-size: 20px;
+    color: #333;
+    margin: 5px 0;
+}
+
+.featuredTitlesBelow h2 {
+    font-size: 16px;
+    color: #666;
 }

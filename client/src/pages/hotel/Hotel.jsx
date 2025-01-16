@@ -57,7 +57,7 @@ function Hotel() {
     if (user) {
       setOpenModel(true)
     } else {
-      navigate("/login")
+      navigate("/login",{ state: { from: location.pathname } })
     }
   }
   return (
@@ -85,7 +85,7 @@ function Hotel() {
               <span>{data.address}</span>
             </div>
             <span className="hotelDistance">Excellent location - {data.distance}m from the center</span>
-            <span className="hotelPriceHighlight">Book a stay over Rs{data.cheapestPrice} at this property and get a free aiport taxi</span>
+            <span className="hotelPriceHighlight">Book a stay over Rs{data.cheapestPrice} at this property and get a free airport taxi</span>
             <div className="hotelImages">
               {data.photos?.map((photo,i) => (
                 <div className="hotelImgWrapper">
@@ -106,7 +106,7 @@ function Hotel() {
                 </p>
               </div>
               <div className="hotelDetailsPrice">
-                <h1>Perfect for {days}-Night  Stay!</h1>
+                <h1>Perfect for {days}-Night Stay!</h1>
                 <span>
                   Offering garden views and good air-conditioned accommodation, this property has an 
                   excellent facility score of 8.1! 
